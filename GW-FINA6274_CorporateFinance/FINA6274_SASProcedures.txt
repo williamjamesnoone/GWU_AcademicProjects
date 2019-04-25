@@ -1,0 +1,13 @@
+DM 'log; clear; output; clear';
+Proc Import Out=MF1;
+	Datafile="C:\Users\wnoone\Dropbox\Will Noone_GW MSF\Fin Mgt\Assignment\MODEL1DATA.xls";
+	DMBS=Excel Replace;
+	Getnames=Yes;
+	Run;
+Proc Reg Data=MF1;
+	 Model Tbill=Date HPI/clb;
+	 Run;
+Proc GLM Data=MF1;
+	 Model Tbill=Date HPI;
+	 Run;
+	 Quit;
